@@ -13,7 +13,8 @@
   ],
   "types": "dist/nanoid-dictionary.d.ts",
   "scripts": {
-    "build": "rollup -c && tsc"
+    "build": "rollup -c && tsc",
+    "postversion": "git push && git push --tags && npm publish"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^18.1.0",
