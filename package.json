@@ -6,23 +6,34 @@
   "module": "dist/nanoid-dictionary.esm.js",
   "browser": "dist/nanoid-dictionary.umd.js",
   "author": "Stanislav Lashmanov <stasvarenkin@gmail.com>",
-  "license": "MIT",
-  "repository": "github:CyberAP/nanoid-dictionary",
   "files": [
     "dist"
   ],
   "types": "dist/nanoid-dictionary.d.ts",
   "scripts": {
-    "build": "rollup -c && tsc",
-    "postversion": "git push && git push --tags && npm publish"
+    "lint": "eslint \"./**/*.{ts,js}\"",
+    "build-tests": "esbuild test/index.ts --target=es2020 --bundle --keep-names > test/test-bundle.js",
+    "test": "npm run build && npm run build-tests && npm run test-tape-run",
+    "test-tape-run": "cat test/index.html | tape-run --input=html --static=test | tap-spec",
+    "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.cjs --sourcemap",
+    "build-cjs:min": "esbuild src/*.ts --format=cjs --minify --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.min.cjs --sourcemap",
+    "build-esm": "esbuild src/*.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
+    "build-esm:min": "esbuild ./src/*.ts --format=esm --keep-names --bundle --tsconfig=tsconfig.build.json --minify --out-extension:.js=.min.js --outdir=./dist --sourcemap",
+    "build-docs": "typedoc ./src/index.ts",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm && npm run build-esm:min && npm run build-cjs:min",
+    "toc": "markdown-toc --maxdepth 3 -i README.md",
+    "preversion": "npm run lint",
+    "version": "npm run toc && auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md README.md",
+    "postversion": "git push --follow-tags && npm publish",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^18.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "rollup": "^2.47.0",
-    "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "tsc": "^1.20150623.0",
-    "typescript": "^4.2.4"
-  }
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "esbuild": "^0.24.2",
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "typescript": "^5.7.3"
+  },
+  "license": "MIT"
 }

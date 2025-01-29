@@ -3,24 +3,21 @@ Predefined character sets to use with [nanoid](https://github.com/ai/nanoid). Us
 
 [![npm](https://img.shields.io/npm/v/nanoid-dictionary)](https://www.npmjs.com/package/nanoid-dictionary)
 
+A fork of [CyberAP/nanoid-dictionary](https://github.com/CyberAP/nanoid-dictionary).
+
 
 ## Install
 Install nanoid and dictionary
 
-`npm i nanoid nanoid-dictionary`
-
-_Note_: If you plan on using `import` style ES6 syntax (or node complains that it can't find the named export of the thing you're importing from `nanoid-dictionary` please rather install the beta version, like this
-
-`npm i nanoid-dictionary@beta`
-
+`npm i @nichoth/nanoid @nichoth/nanoid-dictionary`
 
 ## Usage
 
 Require a `customAlphabet` from `nanoid` and pass a string from the dictionary:
 
-```javascript
-import { customAlphabet } from 'nanoid';
-import { lowercase } from 'nanoid-dictionary';
+```js
+import { customAlphabet } from '@nichoth/nanoid';
+import { lowercase } from '@nichoth/nanoid-dictionary';
 
 const lowercaseRandomString = customAlphabet(lowercase, 10);
 ```
@@ -33,7 +30,7 @@ const lowercaseRandomString = customAlphabet(lowercase, 10);
 Numbers from 0 to 9
 
 ```javascript
-import { numbers } from 'nanoid-dictionary';
+import { numbers } from '@nichoth/nanoid-dictionary';
 ```
 
 ### `hexadecimalLowercase`
@@ -41,7 +38,7 @@ import { numbers } from 'nanoid-dictionary';
 Lowercase English hexadecimal lowercase characters: `0123456789abcdef`
 
 ```javascript
-import { hexadecimalLowercase } from 'nanoid-dictionary';
+import { hexadecimalLowercase } from '@nichoth/nanoid-dictionary';
 ```
 
 ### `hexadecimalUppercase`
@@ -49,7 +46,7 @@ import { hexadecimalLowercase } from 'nanoid-dictionary';
 Lowercase English hexadecimal uppercase characters: `0123456789ABCDEF`
 
 ```javascript
-import { hexadecimalUppercase } from 'nanoid-dictionary';
+import { hexadecimalUppercase } from '@nichoth/nanoid-dictionary';
 ```
 
 ### `lowercase`
@@ -57,7 +54,7 @@ import { hexadecimalUppercase } from 'nanoid-dictionary';
 Lowercase English letters: `abcdefghijklmnopqrstuvwxyz`
 
 ```javascript
-import { lowercase } from 'nanoid-dictionary';
+import { lowercase } from '@nichoth/nanoid-dictionary';
 ```
 
 ### `uppercase`
@@ -65,7 +62,7 @@ import { lowercase } from 'nanoid-dictionary';
 Uppercase English letters: `ABCDEFGHIJKLMNOPQRSTUVWXYZ`
 
 ```javascript
-import { uppercase } from 'nanoid-dictionary';
+import { uppercase } from '@nichoth/nanoid-dictionary';
 ```
 
 ### `alphanumeric`
@@ -75,7 +72,7 @@ Combination of all the lowercase, uppercase characters and numbers from 0 to 9
 Does not include any symbols or special characters
 
 ```javascript
-import { alphanumeric } from 'nanoid-dictionary';
+import { alphanumeric } from '@nichoth/nanoid-dictionary';
 ```
 
 ### `nolookalikes`
@@ -85,7 +82,7 @@ Numbers and english alphabet without lookalikes: `1`, `l`, `I`, `0`, `O`, `o`, `
 Complete set: `346789ABCDEFGHJKLMNPQRTUVWXYabcdefghijkmnpqrtwxyz`
 
 ```javascript
-import { nolookalikes } from 'nanoid-dictionary';
+import { nolookalikes } from '@nichoth/nanoid-dictionary';
 ```
 
 ### `nolookalikesSafe`
@@ -97,5 +94,5 @@ This list should protect you from accidentally getting obscene words in generate
 Complete set: `6789BCDFGHJKLMNPQRTWbcdfghjkmnpqrtwz`
 
 ```javascript
-import { nolookalikesSafe } from 'nanoid-dictionary';
+import { nolookalikesSafe } from '@nichoth/nanoid-dictionary';
 ```
