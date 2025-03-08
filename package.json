@@ -1,6 +1,7 @@
 {
   "name": "@nichoth/nanoid-dictionary",
   "version": "5.0.6",
+  "type": "module",
   "description": "Predefined character sets to use with nanoid",
   "main": "dist/nanoid-dictionary.cjs.js",
   "types": "./dist/index.d.ts",
